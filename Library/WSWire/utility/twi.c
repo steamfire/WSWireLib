@@ -173,6 +173,8 @@ uint8_t twi_readFrom(uint8_t address, uint8_t* data, uint8_t length)
  *          2 .. address send, NACK received
  *          3 .. data send, NACK received
  *          4 .. other twi error (lost bus arbitration, bus error, ..)
+ *          5 .. timed out while trying to become Bus Master
+ *          6 .. timed out while waiting for data to be sent
  */
 uint8_t twi_writeTo(uint8_t address, uint8_t* data, uint8_t length, uint8_t wait)
 {
@@ -212,7 +214,7 @@ uint8_t twi_writeTo(uint8_t address, uint8_t* data, uint8_t length, uint8_t wait
   // wait for write operation to complete
   twi_tout(1);  
   while(wait && (TWI_MTX == twi_state)){
-    if (twi_tout(0)) return 5;  
+    if (twi_tout(0)) return 6;  
     continue;
   }
   
