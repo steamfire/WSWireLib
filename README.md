@@ -1,7 +1,9 @@
 WSWireLib
 =========
 
-This is a modification of the Arduino Wire Library, to add timeouts to the freeze-prone TWI while() loops.  It is compatible with Arduino 1.0.  After 100000 iterations of the while() loop it simply breaks the while loop and re-runs twi_init() to reinitialize the TWI perhipheral and I2C pins of the AVR.  This also disables the arduino pullup resistors on SDA and SCL lines, contrary to the standard wire lib, which enables the pullups.
+This is a modification of the Arduino Wire Library, to add timeouts to the freeze-prone TWI while() loops.  It is compatible with Arduino 1.0.  After 100000 iterations of the while() loop it simply breaks the while loop and re-runs twi_init() to reinitialize the TWI perhipheral and I2C pins of the AVR.  It is probably not the best solution for this problem, but it does appear to work!
+
+HARDWARE I2C BUS NOTE: This library also disables the arduino pullup resistors on SDA and SCL lines, contrary to the standard wire lib, which enables the pullups.  You will need external pullup resistors, or another device that has pullups enabled, or just change the two lines in twi.h that contain digitalWrite commands.
 
 Installation
 ----
